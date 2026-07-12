@@ -1,0 +1,10 @@
+# Root
+node_modules/
+.env
+
+# Client
+client/node_modules/
+client/dist/
+
+# Firebase
+client/src/firebase.js

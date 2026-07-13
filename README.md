@@ -5,7 +5,6 @@ I got tired of wallpaper sites that show you the same generic grid every time, w
 The core idea: every interaction (view, like, download, skip) feeds a scoring engine that ranks wallpapers by how close they are to your taste, so the longer you use it, the more it feels curated for you specifically instead of just being a static gallery.
 
 ![Homepage / gallery view](screenshots/gallery.png)
-*Add a screenshot of the main gallery grid here*
 
 ---
 
@@ -29,7 +28,6 @@ Wally tries to fix this with real-time interaction tracking, a tag-weighted scor
 100+ wallpapers spread across 10 genres - Nature, Space, Abstract, Minimal, Dark, Neon, City, Architecture, Ocean, Mountains. Each wallpaper carries multiple tags rather than being locked to one category, so it shows up in more relevant places. The grid is a responsive masonry layout with a couple of featured 2×2 hero cards up top, a genre filter bar with live counts and full-text search across titles and tags. Cards have a hover animation (pop-lift + zoom + gradient overlay) and the background does a subtle parallax scroll independent of the content.
 
 ![Genre filtering and search](screenshots/filter-search.png)
-*Add a screenshot of the filter bar / search in action*
 
 ### AI recommendations
 This is the part I spent the most time on. Every interaction gets weighted:
@@ -48,7 +46,6 @@ These scores accumulate per-user in Firestore and update in real time. Once you'
 A "surprise me" mode - random picks weighted so genres you already like show up more often, but you still get pulled outside your usual taste occasionally. You can skip, like, view, or save straight from the roulette modal and skipping actively teaches the engine what to avoid next time. It tracks how many you've skipped and how many are left in the pool.
 
 ![Roulette mode](screenshots/roulette.png)
-*Add a screenshot of the roulette modal here*
 
 ### Custom 9-Pack
 An auto-generated set of 9 wallpapers ranked by your taste score. You can refresh the whole set at once, or hover a single card to swap out just that one (there's a little flash animation to confirm the swap). The footer shows how many unused candidates are still available in the pool.
@@ -57,13 +54,11 @@ An auto-generated set of 9 wallpapers ranked by your taste score. You can refres
 Pick a colour with the native colour picker, type in a hex code, or grab one of 15 preset swatches. Under the hood this runs canvas-based k-means clustering to extract the dominant palette from every wallpaper, then sorts results by RGB distance so the closest matches come first. There's a live progress bar while it scans, since this isn't instant across 100+ images.
 
 ![Colour search](screenshots/color-search.png)
-*Add a screenshot of the colour picker + results here*
 
 ### Taste profile page
 A full dashboard, reachable from the user menu, that shows a computed "vibe label" based on your dominant genre (things like "Neon Dreamer" or "Nature Lover"), genre score bars and stats like total likes, genres explored and total interactions - plus a grid of everything you've liked. All computed live off the Firestore tag scores, not cached.
 
 ![Taste profile dashboard](screenshots/taste-profile.png)
-*Add a screenshot of the taste profile page here*
 
 ### Collections
 Create named collections, add wallpapers to them from a card hover or the modal and toggle any collection between private and public. Public collections get a shareable link with a unique slug. You can rename inline, expand to preview thumbnails and delete with one click.
@@ -87,7 +82,6 @@ Email/password and Google one-tap sign-in, both via Firebase Auth. Error message
 Add wallpapers by picsum seed or a custom URL, set a primary type (which determines the smart ID prefix - e.g. `NAT-011`, `SPC-004`) and add extra tags. There's a live seed preview before you commit, plus search/browse/delete for existing wallpapers, with view counts shown per entry.
 
 ![Admin panel](screenshots/admin-panel.png)
-*Add a screenshot of the admin panel here*
 
 ### Security
 Firestore rules restrict users to reading/writing their own data. Public collections are readable by anyone; private ones are owner-only. Firebase ID tokens are verified on every protected route.

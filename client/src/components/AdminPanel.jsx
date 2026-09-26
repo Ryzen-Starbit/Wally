@@ -1,3 +1,4 @@
+import { API_URL } from '../utils/api.js'
 import { useState } from 'react'
 import { X, Plus, Trash2, AlertTriangle } from 'lucide-react'
 
@@ -45,7 +46,7 @@ export default function AdminPanel({ open, onClose, wallpapers, genres, onRefres
         tags:       [form.primaryTag, ...form.extraTags.filter(t => t !== form.primaryTag)],
         resolution: form.resolution,
       }
-      const res  = await fetch('/api/wallpapers', {
+      const res  = await fetch(`${API_URL}/api/wallpapers`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(body),
@@ -64,7 +65,7 @@ export default function AdminPanel({ open, onClose, wallpapers, genres, onRefres
 
   async function handleDelete(id) {
     try {
-      const res = await fetch(`/api/wallpapers/${id}`, { method: 'DELETE' })
+      const res = await fetch(`${API_URL}/api/wallpapers/${id}`, { method: 'DELETE' })
       if (!res.ok) throw new Error('Delete failed')
       setDeleteConfirm(null)
       onRefresh()

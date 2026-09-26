@@ -1,3 +1,4 @@
+import { API_URL } from './utils/api.js'
 import { useState, useEffect, useMemo, useCallback } from 'react'
 import Header            from './components/Header.jsx'
 import FilterBar         from './components/FilterBar.jsx'
@@ -57,7 +58,7 @@ export default function App() {
     try {
       setLoading(true)
       setError(null)
-      const res = await fetch('/api/wallpapers')
+      const res = await fetch(`${API_URL}/api/wallpapers`)
       if (!res.ok) throw new Error(`Server error: ${res.status}`)
       setWallpapers(await res.json())
     } catch (e) {
@@ -100,7 +101,7 @@ export default function App() {
     document.body.style.overflow = 'hidden'
     trackInteraction(wp.tags, 'view')
     try {
-      await fetch(`/api/wallpapers/${wp.id}/view`, { method: 'PATCH' })
+      await fetch(`${API_URL}/api/wallpapers/${wp.id}/view`, { method: 'PATCH' })
       setWallpapers(prev =>
         prev.map(w => w.id === wp.id ? { ...w, views: (w.views || 0) + 1 } : w)
       )
